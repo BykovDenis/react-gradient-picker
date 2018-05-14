@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import GradientPicker from './container';
+import GradientPicker from './container/gradient-picker';
 import './App.css';
 
 class App extends Component {

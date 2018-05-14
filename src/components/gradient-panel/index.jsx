@@ -1,6 +1,7 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss'
+import Card from 'material-ui/Card';
 
 const styles = {
   container: {
@@ -17,7 +18,7 @@ function GradientPanel(props) {
 
   return (
     <Fragment>
-      <div
+      <Card
         className={props.classes.container}
         style={{ backgroundImage: props.gradientStyle }}
       />

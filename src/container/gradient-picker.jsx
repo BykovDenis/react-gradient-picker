@@ -1,11 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import GradientPanel from '../components/gradient-panel';
 import PointColor from '../components/point-color';
 import AlphaColor from '../components/alpha-color';
+import PanelColorInfo from '../components/panel-info-color';
 import prepareGradientProperties, { sortCollectionGradient } from '../helpers/prepare-gradient-properties';
 import pixelsToPercent from '../helpers/convert-coordinates';
+import muiTheme from './mui-theme';
 
 const WIDTH_BUTTON = '30';
 const styles = {
@@ -17,9 +21,11 @@ const styles = {
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    minHeight: '70px',
+    minHeight: '80px',
   }
 };
+
+const theme = createMuiTheme({ muiTheme });
 
 class GradientPicker extends React.Component {
   constructor(props) {
@@ -109,23 +115,26 @@ class GradientPicker extends React.Component {
     this.gradientProperies = prepareGradientProperties(props.gradient);
     this.styleGradientPanel = this.gradientProperies.gradient;
     return (
-      <div
-        className={props.classes.container}
-        ref={(gradientContainer) => { this.gradientContainer = gradientContainer } }
-        onMouseUp={this.pinColorChangeHandler(false)}
-        onMouseMove={this.pinColorChangeHandler(true)}
-        id="unique"
-      >
-        <div className={props.classes.buttonsContainer}>
-          {this.colorsButtons}
+      <MuiThemeProvider theme={theme}>
+        <div
+          className={props.classes.container}
+          ref={(gradientContainer) => { this.gradientContainer = gradientContainer } }
+          onMouseUp={this.pinColorChangeHandler(false)}
+          onMouseMove={this.pinColorChangeHandler(true)}
+          id="unique"
+        >
+          <div className={props.classes.buttonsContainer}>
+            {this.colorsButtons}
+          </div>
+          <GradientPanel
+            getGradientPanelWidth={this.getGradientPanelWidth}
+            ref={(gradientPanel) => { this.gradientPanel = gradientPanel } }
+            gradientStyle={this.styleGradientPanel}
+          />
+          {this.alphaButtons}
+          <PanelColorInfo />
         </div>
-        <GradientPanel
-          getGradientPanelWidth={this.getGradientPanelWidth}
-          ref={(gradientPanel) => { this.gradientPanel = gradientPanel } }
-          gradientStyle={this.styleGradientPanel}
-        />
-        {this.alphaButtons}
-      </div>
+      </MuiThemeProvider>
     );
   }
 }

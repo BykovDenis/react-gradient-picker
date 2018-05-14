@@ -1,38 +1,43 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles';
+import Button from 'material-ui/Button';
+import IconColor from '@material-ui/icons/InvertColors'
 
-const WIDTH_BUTTON = '20';
-const HEIGHT_BUTTON = '20';
-const styleSheet = {
-  buttonContainer: {
-    position: 'absolute',
-    display: 'flex',
-    transform: `translateX(-${Math.floor(WIDTH_BUTTON / 2) - 1}px)`,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    whiteSpace: 'nowrap'
-  },
-  button: {
-    position:'relative',
-    zIndex: 5,
-    padding: 0,
-    width: `${WIDTH_BUTTON}px`,
-    height: `${HEIGHT_BUTTON}px`,
-    backgroundSize: '40px 40px',
-    backgroundRepeat: 'no-repeat',
-    boxShadow: '0 2px 5px 0 rgba(26, 26, 27, .47)',
-    backgroundColor: '#eef1f3',
-    borderRadius: '50%',
-    cursor: 'pointer',
-    outline: 'none',
-    '&:focus': {
-      filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, .6))',
+const WIDTH_BUTTON = '30';
+const HEIGHT_BUTTON = '30';
+const styleSheet = (theme) => {
+  return {
+    buttonContainer: {
+      position: 'absolute',
+      display: 'flex',
+      transform: `translateX(-${Math.floor(WIDTH_BUTTON / 2) - 1}px)`,
+      flexDirection: 'column',
+      justifyContent: 'center',
+      whiteSpace: 'nowrap'
     },
-    '&:focus + div': {
-      filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, .6))',
+    button: {
+      ...theme.muiTheme.button,
+      position: 'relative',
+      zIndex: 5,
+      padding: 0,
+      width: `${WIDTH_BUTTON}px`,
+      minWidth: `${WIDTH_BUTTON}px`,
+      height: `${HEIGHT_BUTTON}px`,
+      backgroundSize: '40px 40px',
+      backgroundRepeat: 'no-repeat',
+      boxShadow: '0 2px 5px 0 rgba(26, 26, 27, .47)',
+      borderRadius: '50%',
+      cursor: 'pointer',
+      outline: 'none',
+      '&:focus': {
+        filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, .6))',
+      },
+      '&:focus + div': {
+        filter: 'drop-shadow(0 0 2px rgba(0, 0, 0, .6))',
+      }
     }
-  }
+  };
 };
 
 function AlphaColor(props) {
@@ -40,8 +45,15 @@ function AlphaColor(props) {
   return (
     <Fragment>
       <div className={props.classes.buttonContainer} style={{ left: `${positionX}%`}}>
-        <button className={props.classes.button}>
-        </button>
+        <Button
+          size="small"
+          variant="fab"
+          mini
+          aria-label="alpha"
+          className={props.classes.button}
+        >
+          <IconColor />
+        </Button>
       </div>
     </Fragment>
   );
@@ -57,4 +69,4 @@ AlphaColor.propTypes = {
 };
 
 
-export default injectSheet(styleSheet)(AlphaColor);
+export default withStyles(styleSheet)(AlphaColor);
