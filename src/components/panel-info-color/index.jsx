@@ -8,11 +8,11 @@ import SketchPicker from 'react-color';
 const styles = {
   card: {
     display: 'inline-block',
-    vertcalAlign: 'baseline',
-    paddingTop: '10px',
-    paddingBottom: '10px',
-    paddingLeft: '10px',
-    paddingRight: '10px',
+    verticalAlign: 'baseline',
+    backgroundColor: 'white',
+    borderRadius: 0,
+    minWidth: '240px',
+    minHeight: '300px',
   },
   container: {
     display: 'flex',
