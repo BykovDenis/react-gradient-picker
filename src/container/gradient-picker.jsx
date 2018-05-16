@@ -37,7 +37,7 @@ class GradientPicker extends React.Component {
     super(props);
     this.gradientProperies = encodeGradientProperties(props.gradient);
     this.styleGradientPanel = this.gradientProperies.gradient;
-    const defaultElement = this.gradientProperies.data[0];
+    const defaultElement = this.gradientProperies.data[1];
     this.state = {
       ...this.gradientProperies,
       exportData: props.gradient,
@@ -63,26 +63,6 @@ class GradientPicker extends React.Component {
     );
   }
 
-  getNewStepPoint(key, posX) {
-    const { state } = this;
-    const step = parseInt(posX, 10);
-    const newData = state.data.map(elem => elem.key === key
-      ? {
-        ...elem,
-        step,
-      }
-      : elem
-    );
-    this.setState({
-      ...this.state,
-      data: newData,
-      activeElement: {
-        ...state.activeElement,
-        step,
-      }
-    })
-  }
-
   activePinColor(params) {
     const { data } = this.state;
     const newData = data.map(elem => elem.key === params.key ? { ...elem, active: true} : elem);
@@ -99,13 +79,39 @@ class GradientPicker extends React.Component {
     });
   }
 
-  updatePointsColor(activeElement, step) {
+  updatePointsColor(activeElement, step, newDataCustom = false) {
     const { state } = this;
-    const newData = this.getNewGradientPoint(state.data, step, activeElement, true);
+    let newData;
+    if (!newDataCustom) {
+      newData = this.getNewGradientPoint(state.data, step, activeElement, true);
+    } else {
+      newData = newDataCustom;
+    }
     const exportData = decodeGradientProperties(newData);
     this.gradientProperies = encodeGradientProperties(exportData);
     this.styleGradientPanel = this.gradientProperies.gradient;
     return { newData: newData, exportData: exportData };
+  }
+
+  getNewStepPoint(key, step) {
+    const { state } = this;
+    const newData = state.data.map(elem => elem.key === key
+      ? {
+        ...elem,
+        step,
+      }
+      : elem
+    );
+    const activeElement = {
+      ...state.activeElement,
+      step,
+    };
+    this.updatePointsColor(activeElement, step, newData)
+    this.setState({
+      ...this.state,
+      data: newData,
+      activeElement,
+    })
   }
 
   changeColorActiveElement(key, color, alpha, step) {
@@ -182,6 +188,7 @@ class GradientPicker extends React.Component {
           changeColorActiveElement={this.changeColorActiveElement}
           activeElement={state.activeElement}
           getNewStepPoint={this.getNewStepPoint}
+          countPoints={state.data.length}
         />
       </MuiThemeProvider>
     );

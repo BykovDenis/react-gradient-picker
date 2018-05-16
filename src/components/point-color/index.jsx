@@ -66,7 +66,6 @@ function PointColor(props) {
         <Button
           size="small"
           variant="fab"
-          mini
           aria-label="color"
           className={props.classes.button}
           onMouseDown={mouseDownHandler}

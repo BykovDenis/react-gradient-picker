@@ -24,42 +24,63 @@ const styles = {
   }
 };
 
-function PanelColorInfo(props) {
-  // const colorRGBA = { ...props.color, a: props.activeElement.alpha };
-  const { color, alpha } = props.activeElement;
-  const colorRGBA = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+class PanelColorInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.colorSelectHandler = this.colorSelectHandler.bind(this);
+    this.stepChangeHandler = this.stepChangeHandler.bind(this);
+  }
 
-  function colorSelectHandler(color) {
+  colorSelectHandler(color) {
+    const { props } = this;
     const rgb = { r: color.rgb.r, g: color.rgb.g, b: color.rgb.b };
     const alpha = color.rgb.a;
     const key = props.activeElement.key;
-    const step = props.activeElement.step; 
+    const step = props.activeElement.step;
     props.changeColorActiveElement(key, rgb, alpha, step);
   }
 
-  function stepChangeHandler(evt) {
-    props.getNewStepPoint(props.activeElement.key, evt.target.value);
+  stepChangeHandler(evt) {
+    const { props } = this;
+    let value = parseInt(evt.target.value, 10);
+    if (props.activeElement.key > 0 && props.activeElement.key < props.countPoints) {
+      if (value < 0) {
+        value = 0;
+        evt.target.value = 0;
+      }
+      if (value > 100) {
+        value = 100;
+        evt.target.value = 100;
+      }
+      props.getNewStepPoint(props.activeElement.key, value);
+    }
   }
 
-  return (
-    <Card className={props.classes.card}>
-      <form method="GET" name="color-parameters" className={props.classes.container}>
+  render() {
+    const { props } = this;
+    const {color, alpha} = props.activeElement;
+    const colorRGBA = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+    return (
+      <Card className={props.classes.card}>
+        <form method="GET" name="color-parameters" className={props.classes.container}>
+          {this.textField}
+          <SketchPicker
+            color={colorRGBA}
+            onChangeComplete={this.colorSelectHandler}
+          />
+        </form>
         <TextField
           id={`${props.activeElement.id}${Math.random()}point-position`}
           name="point-position"
           label="Position"
           type='number'
-          defaultValue={props.activeElement.step}
+          value={props.activeElement.step}
           className={props.classes.input}
-          onChange={stepChangeHandler}
+          onChange={this.stepChangeHandler}
         />
-        <SketchPicker
-          color={colorRGBA}
-          onChangeComplete={colorSelectHandler}
-        />
-      </form>
-    </Card>
-  );
+      </Card>
+    );
+  }
 }
 
 PanelColorInfo.defaultProps = {
@@ -73,12 +94,14 @@ PanelColorInfo.defaultProps = {
       r: 0
     }
   },
+  countPoints: 0,
   changeColorActiveElement: () => {},
   getNewStepPoint: () => {},
 };
 
 PanelColorInfo.propTypes = {
   activeElement: PropTypes.object.isRequired,
+  countPoints: PropTypes.number.isRequired,
   changeColorActiveElement: PropTypes.func.isRequired,
   getNewStepPoint: PropTypes.func.isRequired
 };
