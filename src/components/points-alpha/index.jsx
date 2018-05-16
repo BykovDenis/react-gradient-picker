@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import AlphaColor from '../alpha-color';
 
 function PointsAlpha(props) {
+  const { activeElementKey } = props;
   const alphaButtons = props.data.map(elem =>
-    <AlphaColor key={`alpha-${elem.key}`} data={elem} />
+    <AlphaColor key={`alpha-${elem.key}`} data={elem} isActive={ activeElementKey === elem.key } />
   );
   return (
     <Fragment>
@@ -14,11 +15,13 @@ function PointsAlpha(props) {
 }
 
 PointsAlpha.defaultProps = {
-  data: []
+  data: [],
+  activeElementKey: 0,
 };
 
 PointsAlpha.propTypes = {
-  data: PropTypes.array.isRequired
+  data: PropTypes.array.isRequired,
+  activeElementKey: PropTypes.number.isRequired,
 };
 
 export default PointsAlpha;

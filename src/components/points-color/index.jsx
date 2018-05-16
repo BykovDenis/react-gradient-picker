@@ -8,6 +8,7 @@ function PointsColor(props) {
       key={`color-${elem.key}`}
       data={elem}
       activePinColor={props.activePinColor}
+      isActive={ props.activeElementKey === elem.key }
     />
   );
   return (
@@ -21,11 +22,13 @@ PointsColor.defauldtProps = {
   data: [],
   styleGradientPanel: '',
   activePinColor: () => {},
+  activeElementKey: 0,
 };
 
 PointsColor.propTypes = {
   data: PropTypes.array.isRequired,
   activePinColor: PropTypes.func.isRequired,
+  activeElementKey: PropTypes.number.isRequired,
 };
 
 export default PointsColor;

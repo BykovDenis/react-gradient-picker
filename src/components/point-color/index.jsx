@@ -2,7 +2,6 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import IconColor from '@material-ui/icons/InvertColors'
 
 const WIDTH_BUTTON = '15';
 const HEIGHT_BUTTON = '15';
@@ -71,6 +70,7 @@ function PointColor(props) {
           aria-label="color"
           className={props.classes.button}
           onMouseDown={mouseDownHandler}
+          style={{ backgroundColor: props.isActive ? '#2babcf' : '#ed3e49' }}
         />
       </div>
       <div className={props.classes.line} style={{ left: `${positionX}%`}} />
@@ -80,11 +80,13 @@ function PointColor(props) {
 
 PointColor.defaultProps = {
   data: {},
+  isActive: false,
   activePinColor: () => {},
 };
 
 PointColor.propTypes = {
   data: PropTypes.object.isRequired,
+  isActive: PropTypes.bool.isRequired,
   activePinColor: PropTypes.func.isRequired,
 };
 

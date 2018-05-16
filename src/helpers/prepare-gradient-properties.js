@@ -3,7 +3,6 @@ import colorRgbToHEX from './color-rgb-to-hex';
 import {
   convertAlphaHEXParameterToDec,
   convertAlphaDecParameterToHEX,
-  convertColorDecParameterToHEX
 } from './convert-alpha-parameter';
 import { sortBy } from 'lodash/collection'
 

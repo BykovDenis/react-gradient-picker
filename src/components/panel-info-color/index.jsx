@@ -28,7 +28,6 @@ function PanelColorInfo(props) {
   // const colorRGBA = { ...props.color, a: props.activeElement.alpha };
   const { color, alpha } = props.activeElement;
   const colorRGBA = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
-  stepChangeHandler = stepChangeHandler.bind(this);
 
   function colorSelectHandler(color) {
     const rgb = { r: color.rgb.r, g: color.rgb.g, b: color.rgb.b };

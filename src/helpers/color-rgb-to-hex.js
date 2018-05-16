@@ -7,6 +7,5 @@ export default function colorRgbToHEX(rgb) {
   red = red.length === 1 ? `0${red}` : red;
   blue = blue.length === 1 ? `0${blue}` : blue;
   green = green.length === 1 ? `0${green}` : green;
-  console.log(red, green, blue);
   return `${red}${green}${blue}`;
 }
