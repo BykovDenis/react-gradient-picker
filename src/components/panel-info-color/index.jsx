@@ -13,6 +13,9 @@ const styles = {
     borderRadius: 0,
     minWidth: '240px',
     minHeight: '300px',
+    '&:hover': {
+      backgroundColor: 'white',
+    }
   },
   container: {
     display: 'flex',
