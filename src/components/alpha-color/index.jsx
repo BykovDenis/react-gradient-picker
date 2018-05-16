@@ -2,7 +2,7 @@ import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
-import IconColor from '@material-ui/icons/InvertColors'
+import IconAlpha from '@material-ui/icons/Opacity'
 
 const WIDTH_BUTTON = '30';
 const HEIGHT_BUTTON = '30';
@@ -52,7 +52,7 @@ function AlphaColor(props) {
           aria-label="alpha"
           className={props.classes.button}
         >
-          <IconColor />
+          <IconAlpha />
         </Button>
       </div>
     </Fragment>

@@ -4,8 +4,8 @@ import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import IconColor from '@material-ui/icons/InvertColors'
 
-const WIDTH_BUTTON = '30';
-const HEIGHT_BUTTON = '30';
+const WIDTH_BUTTON = '15';
+const HEIGHT_BUTTON = '15';
 const styleSheet = (theme) => {
   return {
     buttonContainer: {
@@ -27,6 +27,7 @@ const styleSheet = (theme) => {
       margin: 0,
       width: `${WIDTH_BUTTON}px`,
       minWidth: `${WIDTH_BUTTON}px`,
+      minHeight: `${HEIGHT_BUTTON}px`,
       height: `${HEIGHT_BUTTON}px`,
       backgroundSize: '40px 40px',
       backgroundRepeat: 'no-repeat',
@@ -44,7 +45,7 @@ const styleSheet = (theme) => {
     line: {
       position: 'absolute',
       top: '100%',
-      height: '100px',
+      height: '25px',
       width: '1px',
       backgroundColor: 'rgba(0, 0, 0, .2)',
       zIndex: '2',
@@ -63,7 +64,6 @@ function PointColor(props) {
   return (
     <Fragment>
       <div className={props.classes.buttonContainer} style={{ left: `${positionX}%`}}>
-        <p className={props.classes.title}> {positionX} % </p>
         <Button
           size="small"
           variant="fab"
@@ -71,9 +71,7 @@ function PointColor(props) {
           aria-label="color"
           className={props.classes.button}
           onMouseDown={mouseDownHandler}
-        >
-          <IconColor />
-        </Button>
+        />
       </div>
       <div className={props.classes.line} style={{ left: `${positionX}%`}} />
     </Fragment>

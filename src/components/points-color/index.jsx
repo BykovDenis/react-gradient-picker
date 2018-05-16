@@ -1,13 +1,13 @@
 import React, {Fragment} from 'react';
 import PropTypes from 'prop-types';
-import PointColor from '../color-point
+import PointColor from '../point-color';
 
-function ColorPoints(props) {
+function PointsColor(props) {
   const colorsButtons = props.data.map(elem =>
     <PointColor
       key={`color-${elem.key}`}
       data={elem}
-      activePinColor={this.activePinColor}
+      activePinColor={props.activePinColor}
     />
   );
   return (
@@ -17,12 +17,15 @@ function ColorPoints(props) {
   );
 }
 
-ColorPoints.defaultProps = {
-  data: {}
+PointsColor.defauldtProps = {
+  data: [],
+  styleGradientPanel: '',
+  activePinColor: () => {},
 };
 
-ColorPoints.propTypes = {
-  data: PropTypes.array.isRequired
+PointsColor.propTypes = {
+  data: PropTypes.array.isRequired,
+  activePinColor: PropTypes.func.isRequired,
 };
 
-export default ColorPoints;
+export default PointsColor;

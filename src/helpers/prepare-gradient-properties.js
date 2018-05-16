@@ -1,25 +1,27 @@
 import colorHexToRgb from './color-hex-to-rgb';
-import ConvertAlphaHEXParameterToDec from './convert-alpha-parameter';
+import colorRgbToHEX from './color-rgb-to-hex';
+import {
+  convertAlphaHEXParameterToDec,
+  convertAlphaDecParameterToHEX,
+  convertColorDecParameterToHEX
+} from './convert-alpha-parameter';
 import { sortBy } from 'lodash/collection'
 
-function prepareGradientProperties(colorsProperties) {
+export function encodeGradientProperties(colorsProperties) {
   let styleGradientPanel = 'linear-gradient(to right';
-  let steps = [];
   let colors = [];
   let alphaChannels = [];
   let percentsStep = [];
   let data = [];
   if (colorsProperties) {
-    Object.keys(colorsProperties).forEach((index) => {
-      steps.push(colorsProperties[index].step);
-    });
+    const steps = getStepsArray(colorsProperties);
     const minMax = getMinMaxElements(steps);
     let i = 0;
     Object.keys(colorsProperties).forEach((index) => {
       const { step, color, alpha } = colorsProperties[index];
       const percentStep = getStepToPercent(step, minMax[1]);
-      const rgbaColor = colorHexToRgb(`#${color}`);
-      const alphaColor = ConvertAlphaHEXParameterToDec(alpha);
+      const rgbaColor = colorHexToRgb(`#${color.replace('#', '')}`);
+      const alphaColor = convertAlphaHEXParameterToDec(alpha);
       data.push({
         key: i++,
         step: percentStep,
@@ -38,6 +40,24 @@ function prepareGradientProperties(colorsProperties) {
     percentsStep,
     data
   };
+}
+
+export function decodeGradientProperties(colorsProperties) {
+  return Object.keys(colorsProperties).map((index) => {
+    const { color, alpha } = colorsProperties[index];
+    const rgbColor = colorRgbToHEX(color);
+    const alphaColor = convertAlphaDecParameterToHEX(parseFloat(alpha, 10));
+    const item = colorsProperties[index];
+    return {
+      ...item,
+      color: rgbColor,
+      alpha: alphaColor,
+    }
+  });
+}
+
+function getStepsArray(data) {
+  return Object.keys(data).map(index => data[index].step);
 }
 
 function getMinMaxElements(arrayElement) {
@@ -66,5 +86,3 @@ export function sortCollectionGradient(data) {
     return elem
   });
 }
-
-export default prepareGradientProperties;

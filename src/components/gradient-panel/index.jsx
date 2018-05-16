@@ -5,7 +5,7 @@ import Card from 'material-ui/Card';
 
 const styles = {
   container: {
-    height: '100px',
+    height: '25px',
     width: '100%',
     display: 'flex',
     flexDirection: 'row',

@@ -4,24 +4,31 @@ import injectSheet from 'react-jss'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import createMuiTheme from 'material-ui/styles/createMuiTheme';
 import GradientPanel from '../components/gradient-panel';
-import PointColor from '../components/point-color';
-import AlphaColor from '../components/alpha-color';
 import PanelColorInfo from '../components/panel-info-color';
-import prepareGradientProperties, { sortCollectionGradient } from '../helpers/prepare-gradient-properties';
+import PointsColor from '../components/points-color';
+import {
+  encodeGradientProperties,
+  decodeGradientProperties,
+  sortCollectionGradient
+}
+from '../helpers/prepare-gradient-properties';
 import pixelsToPercent from '../helpers/convert-coordinates';
+import colorHexToRgb from '../helpers/color-hex-to-rgb';
+import { convertAlphaHEXParameterToDec } from '../helpers/convert-alpha-parameter';
 import muiTheme from './mui-theme';
 
-const WIDTH_BUTTON = '30';
+const WIDTH_BUTTON = '15';
 const styles = {
   container: {
     position: 'relative',
+    marginBottom: '60px',
   },
   buttonsContainer: {
     position: 'relative',
     display: 'flex',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    minHeight: '80px',
+    minHeight: '15px',
   }
 };
 
@@ -30,24 +37,60 @@ const theme = createMuiTheme({ muiTheme });
 class GradientPicker extends React.Component {
   constructor(props) {
     super(props);
-    this.gradientProperies = prepareGradientProperties(props.gradient);
+    const defaultElement = props.gradient[0];
+    const color = colorHexToRgb(defaultElement.color);
+    const alpha = convertAlphaHEXParameterToDec(defaultElement.alpha);
+    this.gradientProperies = encodeGradientProperties(props.gradient);
     this.styleGradientPanel = this.gradientProperies.gradient;
     this.state = {
-      gradient: props.gradient,
-      ...this.gradientProperies
+      ...this.gradientProperies,
+      exportData: props.gradient,
+      activeElement: {
+        key: 0,
+        step: defaultElement.step,
+        color,
+        alpha,
+        active: false,
+      }
     };
-    
     this.pinColorChangeHandler = this.pinColorChangeHandler.bind(this);
     this.pixelsToPercent = pixelsToPercent.bind(this);
     this.activePinColor = this.activePinColor.bind(this);
-
+    this.changeColorActiveElement = this.changeColorActiveElement.bind(this);
+    this.getNewStepPoint = this.getNewStepPoint.bind(this);
   }
 
   getNewGradientPoint(data, posX, activeElement, activeState) {
     return data.map(elem => elem.key === activeElement.key
-      ? { ...elem, step: posX, active: activeState }
+      ? {
+        ...elem,
+        step: posX,
+        color: activeElement.color,
+        alpha: activeElement.alpha,
+        active: activeState
+      }
       : elem
     );
+  }
+
+  getNewStepPoint(key, posX) {
+    const { state } = this;
+    const step = parseInt(posX, 10);
+    const newData = state.data.map(elem => elem.key === key
+      ? {
+        ...elem,
+        step,
+      }
+      : elem
+    );
+    this.setState({
+      ...this.state,
+      data: newData,
+      activeElement: {
+        ...state.activeElement,
+        step,
+      }
+    })
   }
 
   activePinColor(params) {
@@ -66,24 +109,51 @@ class GradientPicker extends React.Component {
     });
   }
 
+  changeColorActiveElement(key, color, alpha, step) {
+    const activeElement = {
+      key: key,
+      step: step,
+      color: color,
+      alpha: alpha,
+    };
+    const { state } = this;
+    const newData = this.getNewGradientPoint(state.data, step, activeElement, true);
+    const exportData = decodeGradientProperties(newData);
+    this.gradientProperies = encodeGradientProperties(exportData);
+    this.styleGradientPanel = this.gradientProperies.gradient;
+    this.setState({
+      ...state,
+      ...this.gradientProperies,
+      exportData: exportData,
+      data: sortCollectionGradient(newData),
+      activeElement
+    });
+  }
+
   pinColorChangeHandler(signActive) {
     return (evt) => {
       const {state} = this;
       if (state.activeElement) {
-        const activeElementSign = state.activeElement.active;
-        const keyActiveElement = state.activeElement.key;
-        if (activeElementSign && (keyActiveElement > 0)) {
+        const activeElement = state.activeElement;
+        const activeElementSign = activeElement.active;
+        const keyActiveElement = activeElement.key;
+        if (activeElementSign && keyActiveElement > 0 && keyActiveElement < state.data.length - 1 ) {
           const posX = evt.pageX - (2 * WIDTH_BUTTON);
           const widthContainer = this.gradientContainer.clientWidth;
           const step = this.pixelsToPercent(posX, widthContainer);
           const {data} = state;
-          const newData = this.getNewGradientPoint(data, step, state.activeElement, true);
+          const newData = this.getNewGradientPoint(data, step, activeElement, true);
+          const exportData = decodeGradientProperties(newData);
+          this.gradientProperies = encodeGradientProperties(exportData);
+          this.styleGradientPanel = this.gradientProperies.gradient;
           this.setState({
             ...state,
+            ...this.gradientProperies,
             data: sortCollectionGradient(newData),
             activeElement: {
-              ...state.activeElement,
+              ...activeElement,
               step,
+              exportData: exportData,
               active: signActive
             }
           });
@@ -91,29 +161,9 @@ class GradientPicker extends React.Component {
       }
     };
   }
-  
-  renderColorPoints(data) {
-    this.colorsButtons = data.map(elem =>
-      <PointColor
-        key={`color-${elem.key}`}
-        data={elem}
-        activePinColor={this.activePinColor}
-      />
-    );
-  }
-
-  renderAlphaPoints(data) {
-    this.alphaButtons = data.map(elem =>
-      <AlphaColor key={`alpha-${elem.key}`} data={elem} />
-    );
-  }
 
   render() {
     const { props, state } = this;
-    this.renderColorPoints(state.data);
-    this.renderAlphaPoints(state.data);
-    this.gradientProperies = prepareGradientProperties(props.gradient);
-    this.styleGradientPanel = this.gradientProperies.gradient;
     return (
       <MuiThemeProvider theme={theme}>
         <div
@@ -124,16 +174,19 @@ class GradientPicker extends React.Component {
           id="unique"
         >
           <div className={props.classes.buttonsContainer}>
-            {this.colorsButtons}
+            <PointsColor data={state.data} activePinColor={this.activePinColor} />
           </div>
           <GradientPanel
             getGradientPanelWidth={this.getGradientPanelWidth}
             ref={(gradientPanel) => { this.gradientPanel = gradientPanel } }
             gradientStyle={this.styleGradientPanel}
           />
-          {this.alphaButtons}
-          <PanelColorInfo />
         </div>
+        <PanelColorInfo
+          changeColorActiveElement={this.changeColorActiveElement}
+          activeElement={state.activeElement}
+          getNewStepPoint={this.getNewStepPoint}
+        />
       </MuiThemeProvider>
     );
   }
