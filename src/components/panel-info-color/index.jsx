@@ -14,7 +14,7 @@ const styles = {
     minWidth: '240px',
     minHeight: '300px',
     '&:hover': {
-      backgroundColor: 'white',
+      backgroundColor: 'white !important',
     }
   },
   container: {
