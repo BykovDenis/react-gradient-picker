@@ -1,0 +1,5 @@
+{
+  "private": true,
+  "name": "ReactGradientPicker",
+  "main": "./container/react-gradient-picker.js"
+}
