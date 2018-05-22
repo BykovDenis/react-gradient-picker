@@ -1,9 +1,15 @@
 {
   "name": "react-gradient-picker",
-  "version": "0.1.3",
-  "homepage": "https://bykovdenis.github.io/react-gradient-picker/build",
-  "author": "bykovdenis",
+  "description": "react gradient picker",
+  "version": "0.1.4",
+  "homepage": "https://bykovdenis.github.io/react-gradient-picker",
+  "bugs": {
+    "url": "https://bykovdenis.github.io/react-gradient-picker/issues"
+  },
+  "author": "Denis Bykov",
+  "user": "bykovdenis",
   "main": "lib/index.js",
+  "license": "MIT",
   "keywords": [
     "react",
     "leaflet",
