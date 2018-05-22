@@ -1,9 +1,17 @@
 {
   "name": "react-gradient-picker",
   "version": "0.1.0",
-  "private": true,
   "homepage": "https://bykovdenis.github.io/react-gradient-picker/build",
-  "author": "Denis Bykov",
+  "author": "denis.bykov",
+  "keywords": [
+    "react",
+    "leaflet",
+    "redux",
+    "webpack",
+    "babel",
+    "scss",
+    "jade"
+  ],
   "dependencies": {
     "@material-ui/core": "^1.0.0-rc.0",
     "@material-ui/icons": "^1.0.0-rc.0",

@@ -2,29 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="33ba95e1-4142-40e4-8455-e179103e3873" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/behavior-points.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/node_modules/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/alpha-color/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/alpha-color/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/gradient-panel/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/gradient-panel/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/panel-color-info/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/panel-color-info/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/point-color/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/point-color/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/points-alpha/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/points-alpha/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/points-color/index.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/components/points-color/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/gradient-picker.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/index.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/container/mui-theme.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/mui-theme.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/behavior-points.js" beforeDir="false" afterPath="$PROJECT_DIR$/.babelrc" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/color-hex-to-rgb.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/color-hex-to-rgb.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/color-rgb-to-hex.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/color-rgb-to-hex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/convert-alpha-parameter.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/convert-alpha-parameter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/convert-coordinates.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/convert-coordinates.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/convert-steps.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/convert-steps.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/helpers/prepare-gradient-properties.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/helpers/prepare-gradient-properties.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -74,8 +53,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="84">
-              <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="21">
+              <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="18" />
             </state>
           </provider>
         </entry>
@@ -83,8 +62,8 @@
       <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/package.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1054">
-              <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+            <state relative-caret-position="147">
+              <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -93,7 +72,7 @@
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+              <caret line="9" selection-start-line="9" selection-end-line="9" />
             </state>
           </provider>
         </entry>
@@ -204,10 +183,10 @@
         <option value="$PROJECT_DIR$/src/container/gradient-picker.jsx" />
         <option value="$PROJECT_DIR$/.babelrc" />
         <option value="$PROJECT_DIR$/config/webpack.config.dev.js" />
-        <option value="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json" />
         <option value="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/index.js" />
         <option value="$PROJECT_DIR$/src/App.js" />
         <option value="$PROJECT_DIR$/src/node_modules/index.js" />
+        <option value="$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json" />
         <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
@@ -346,7 +325,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="87288000" />
+    <option name="totallyTimeSpent" value="88275000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="1440" y="-410" width="1920" height="1080" extended-state="0" />
@@ -360,7 +339,7 @@
       <window_info anchor="bottom" id="Run" order="2" />
       <window_info anchor="bottom" id="Version Control" order="9" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.26727644" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="8" visible="true" weight="0.12906504" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -714,13 +693,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="1" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/App.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
@@ -741,14 +713,21 @@
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
-          <caret line="9" column="2" selection-start-line="9" selection-start-column="2" selection-end-line="9" selection-end-column="2" />
+          <caret line="9" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/node_modules/components/react-gradient-picker/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="21">
+          <caret line="1" selection-start-line="1" selection-end-line="1" selection-end-column="18" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1054">
-          <caret line="5" column="26" selection-start-line="5" selection-start-column="26" selection-end-line="5" selection-end-column="26" />
+        <state relative-caret-position="147">
+          <caret line="7" column="32" lean-forward="true" selection-start-line="7" selection-start-column="32" selection-end-line="7" selection-end-column="32" />
         </state>
       </provider>
     </entry>
