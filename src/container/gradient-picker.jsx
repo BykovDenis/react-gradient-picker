@@ -17,7 +17,6 @@ import pixelsToPercent from '../helpers/convert-coordinates';
 import muiTheme from './mui-theme';
 import { getStepPosition } from '../helpers/convert-steps';
 
-const WIDTH_BUTTON = '15';
 const styles = () => ({
   container: {
     position: 'relative',
