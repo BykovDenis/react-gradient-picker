@@ -2,7 +2,7 @@
   "name": "react-gradient-picker",
   "version": "0.1.1",
   "homepage": "https://bykovdenis.github.io/react-gradient-picker/build",
-  "author": "denis.bykov",
+  "author": "bykovdenis",
   "main": "lib/index.js",
   "keywords": [
     "react",
