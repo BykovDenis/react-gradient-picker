@@ -1,15 +1,16 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import PointColor from '../point-color';
 
 function PointsColor(props) {
-  const colorsButtons = props.data.map(elem =>
+  const activePinColor = props.activePinColor;
+  const colorsButtons = props.data.map(elem => (
     <PointColor
       key={`color-${elem.key}`}
       data={elem}
-      activePinColor={props.activePinColor}
-      isActive={ props.activeElementKey === elem.key }
-    />
+      activePinColor={activePinColor}
+      isActive={props.activeElementKey === elem.key}
+    />)
   );
   return (
     <Fragment>

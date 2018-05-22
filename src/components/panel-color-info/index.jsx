@@ -1,0 +1,148 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { withStyles } from 'material-ui/styles';
+import { TextField, Button } from 'material-ui';
+import Card from 'material-ui/Card';
+import SketchPicker from 'react-color';
+
+const styles = () => ({
+  card: {
+    display: 'flex',
+    flexDirection: 'row',
+    backgroundColor: 'white',
+    borderRadius: 0,
+    '&:hover': {
+      backgroundColor: 'white !important',
+    }
+  },
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItem: 'center',
+  },
+  input: {
+    width: '80px',
+  },
+  button: {
+    color: '#ffffff',
+    backgroundColor: '#ed3e49',
+    '&:hover': {
+      color: '#ffffff',
+      backgroundColor: '#d82934',
+    },
+    '&:focus': {
+      backgroundColor: '#d82934',
+      borderColor: 'rgba(0,0,0,0.125)',
+    },
+    '&:active': {
+      backgroundColor: '#d82934',
+      borderColor: 'rgba(0,0,0,0.125)',
+    },
+  },
+});
+
+class PanelColorInfo extends React.Component {
+  constructor(props) {
+    super(props);
+    this.colorSelectHandler = this.colorSelectHandler.bind(this);
+    this.stepChangeHandler = this.stepChangeHandler.bind(this);
+    this.gradientApplyHandler = this.gradientApplyHandler.bind(this);
+    this.resetButtonClickHandler = this.resetButtonClickHandler.bind(this);
+  }
+
+  colorSelectHandler(color) {
+    const { key, step } = this.props.activeElement;
+    const rgb = { r: color.rgb.r, g: color.rgb.g, b: color.rgb.b };
+    const alpha = color.rgb.a;
+    this.props.changeColorActiveElement(key, rgb, alpha, step);
+  }
+
+  stepChangeHandler(evt) {
+    const { props } = this;
+    const target = evt.target;
+    const { activeElement, countPoints } = this.props;
+    let value = parseInt(evt.target.value, 10);
+    if (activeElement.key > 0 && activeElement.key < countPoints) {
+      if (value < 0) {
+        value = 0;
+        target.value = 0;
+      }
+      if (value > 100) {
+        value = 100;
+        target.value = 100;
+      }
+      this.props.getNewStepPoint(props.activeElement.key, value);
+    }
+  }
+
+  gradientApplyHandler() {
+    this.props.applyPickerGradientParams();
+  }
+
+  resetButtonClickHandler() {
+    this.props.resetPalette();
+  }
+
+  render() {
+    const { props } = this;
+    const activeElement = this.props.activeElement;
+    const { color, alpha, id, step } = activeElement;
+    const colorRGBA = `rgba(${color.r}, ${color.g}, ${color.b}, ${alpha})`;
+    return (
+      <Card className={props.classes.card}>
+        <SketchPicker
+          color={colorRGBA}
+          onChangeComplete={this.colorSelectHandler}
+          className={props.classes.picker}
+        />
+        <div className={props.classes.container}>
+          <TextField
+            id={`${id}${Math.random()}point-position`}
+            name="point-position"
+            label="Position"
+            type="number"
+            value={step}
+            className={props.classes.input}
+            onChange={this.stepChangeHandler}
+          />
+          <Button
+            name="resetPalette"
+            raised="true"
+            className={props.classes.button}
+            onClick={this.resetButtonClickHandler}
+          >
+            Reset
+          </Button>
+        </div>
+      </Card>
+    );
+  }
+}
+
+PanelColorInfo.defaultProps = {
+  activeElement: {
+    key: 1,
+    step: 10,
+    alpha: 1,
+    color: {
+      b: 0,
+      g: 0,
+      r: 0
+    }
+  },
+  countPoints: 0,
+  changeColorActiveElement: () => {},
+  getNewStepPoint: () => {},
+  resetPalette: () => {},
+};
+
+PanelColorInfo.propTypes = {
+  activeElement: PropTypes.object.isRequired,
+  countPoints: PropTypes.number.isRequired,
+  changeColorActiveElement: PropTypes.func.isRequired,
+  getNewStepPoint: PropTypes.func.isRequired,
+  resetPalette: PropTypes.func.isRequired,
+};
+
+export default withStyles(styles)(PanelColorInfo);

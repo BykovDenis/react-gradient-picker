@@ -9,4 +9,3 @@ export function convertAlphaDecParameterToHEX(alphaDEC) {
 export function convertColorDecParameterToHEX(alphaDEC) {
   return alphaDEC.toString(16);
 }
-

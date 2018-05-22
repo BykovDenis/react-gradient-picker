@@ -1,9 +1,9 @@
-import React, {Fragment} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
-import injectSheet from 'react-jss'
+import { withStyles } from 'material-ui/styles';
 import Card from 'material-ui/Card';
 
-const styles = {
+const styles = () => ({
   container: {
     height: '25px',
     width: '100%',
@@ -12,10 +12,9 @@ const styles = {
     alignItems: 'center',
     textAlign: 'center',
   },
-};
+});
 
 function GradientPanel(props) {
-
   return (
     <Fragment>
       <Card
@@ -32,6 +31,6 @@ GradientPanel.defaultProps = {
 
 GradientPanel.propTypes = {
   gradientStyle: PropTypes.string.isRequired,
-}
+};
 
-export default injectSheet(styles)(GradientPanel);
+export default withStyles(styles)(GradientPanel);
