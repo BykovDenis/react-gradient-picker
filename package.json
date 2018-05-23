@@ -1,7 +1,7 @@
 {
   "name": "react-gradient-picker",
   "description": "react gradient picker",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://bykovdenis.github.io/react-gradient-picker",
   "bugs": {
     "url": "https://bykovdenis.github.io/react-gradient-picker/issues"
@@ -61,6 +61,7 @@
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
     "react-jss": "^8.4.0",
+    "react-toggle-display": "^2.2.0",
     "resolve": "1.6.0",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
