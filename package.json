@@ -1,7 +1,7 @@
 {
   "name": "react-gradient-picker",
   "description": "react gradient picker",
-  "version": "0.1.6",
+  "version": "0.1.7",
   "homepage": "https://bykovdenis.github.io/react-gradient-picker",
   "bugs": {
     "url": "https://bykovdenis.github.io/react-gradient-picker/issues"
@@ -13,11 +13,8 @@
   "keywords": [
     "react",
     "leaflet",
-    "redux",
     "webpack",
-    "babel",
-    "scss",
-    "jade"
+    "babel"
   ],
   "dependencies": {
     "@material-ui/core": "^1.0.0-rc.0",
@@ -67,13 +64,14 @@
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
+    "webpack-dashboard": "^1.1.1",
     "webpack-dev-server": "2.9.4",
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "start": "webpack-dashboard -t 'react-gradient-picker' node scripts/start.js",
+    "build": "webpack-dashboard -t 'react-gradient-picker' node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
