@@ -1,10 +1,10 @@
 {
   "name": "react-gradient-picker",
   "description": "react gradient picker",
-  "version": "0.1.8",
-  "homepage": "https://bykovdenis.github.io/react-gradient-picker",
+  "version": "0.1.9",
+  "homepage": "https://github.com/BykovDenis/react-gradient-picker",
   "bugs": {
-    "url": "https://bykovdenis.github.io/react-gradient-picker/issues"
+    "url": "https://github.com/BykovDenis/react-gradient-picker/issues"
   },
   "author": "Denis Bykov",
   "user": "bykovdenis",
