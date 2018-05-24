@@ -12,6 +12,7 @@ const eslintFormatter = require('react-dev-utils/eslintFormatter');
 const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 const getClientEnvironment = require('./env');
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin');
 const paths = require('./paths');
 
 // Webpack uses `publicPath` to determine where the app is being served from.
@@ -246,6 +247,11 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new DashboardPlugin(),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new LodashModuleReplacementPlugin({
+      'collections': true,
+      'shorthands': true,
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
